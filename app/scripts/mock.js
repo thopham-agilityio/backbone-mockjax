@@ -1,5 +1,5 @@
 /* global define */
-define(function() {
+define(['jquery', 'mockjax'], function($) {
 	'use strict';
 
 	/**
@@ -8,13 +8,17 @@ define(function() {
 	 */
 	var mock = function() {
 
+		$.ajaxSetup({
+			dataType: 'json'
+		});
+
 		$.mockjax(function(settings) {
 
       // GET /api/todos - Get todo list
-      if (settings.url.match(/\/api\/todos/)) {
+      if (settings.url.match(/api\/todos/)) {
 
         return {
-          proxy: '/scripts/jsons/todos.json'
+          proxy: '/scripts/jsons/todo/todos.json'
         };
       }
     });
